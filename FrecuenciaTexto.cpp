@@ -8,18 +8,61 @@
 #include "FrecuenciaTexto.h"
 
 FrecuenciaTexto::FrecuenciaTexto(char* diccionario, unsigned tamTablaDisp) {
+    tablaDisp.aumentar(tamTablaDisp);
+    ifstream dicc(diccionario);
     
+    if ( dicc ) {
+        string palabra;
+        while ( dicc >> palabra ) {
+            tablaDisp.insertar(djb2(palabra.c_str()), FrecuenciaTermino(palabra));
+        }
+    }
 }
 
 void FrecuenciaTexto::compruebaTexto(char* texto) {
+    ifstream txt(texto);
     
+    if ( txt ) {
+        string palabra;
+        pair<FrecuenciaTermino*,bool> termino;
+        while ( txt >> palabra ) {
+            termino = tablaDisp.buscar(djb2(palabra.c_str()));
+            if ( termino.second ) {
+                termino.first->ocurrencias++;
+            }
+            else {
+                inexistentes.insert(palabra);
+            }
+        }
+    }
 }
 
 vector<string> FrecuenciaTexto::verInexistentes() {
+    vector<string> output(inexistentes.size());
     
+    for (set<string>::iterator it = inexistentes.begin(); it != inexistentes.end(); it++) {
+        output.push_back(*it);
+    }
+    
+    return output;
 }
 
-unsigned FrecuenciaTexto::djb2(char* palabra) {
+vector<FrecuenciaTermino> FrecuenciaTexto::verFrecuencias() {
+    vector<FrecuenciaTermino> output;
+    vector<FrecuenciaTermino> entradas = tablaDisp.obtenerEntradas();
+    
+    for ( vector<FrecuenciaTermino>::iterator it = entradas.begin(); it != entradas.end(); it++ ) {
+        if ( (*it).ocurrencias > 0 ) {
+            output.push_back(*it);
+        }
+    }
+    
+    sort(output.begin(), output.end(), Comparador() );
+    
+    return output;
+}
+
+unsigned FrecuenciaTexto::djb2(const char* palabra) {
     unsigned hash = 5381;
     int c;
     
