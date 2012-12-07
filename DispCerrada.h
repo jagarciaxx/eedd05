@@ -11,10 +11,6 @@
 #include <vector>
 #include <cmath>
 
-#include <iostream>
-
-#include "FrecuenciaTexto.h"
-
 using namespace std;
 
 enum Estados { VACIA, DISPONIBLE, OCUPADA };
@@ -65,10 +61,6 @@ public:
         return encontrado;
     }
     
-    void aumentar( size_t n ) {
-        tabla.resize(n);
-    }
-    
     vector<T> obtenerEntradas() {
         vector<T> output;
         
@@ -80,6 +72,11 @@ public:
         
         return output;
     }
+    
+    void aumentar( size_t n ) {
+        tabla.resize(n);
+    }
+    
 private:
     long fDisp( long clave ) {
         return clave % tabla.size();
