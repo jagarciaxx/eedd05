@@ -20,8 +20,8 @@ class FrecuenciaTexto: public FrecuenciaTextoBase {
     DispCerrada<FrecuenciaTermino> tablaDisp;
 public:
     FrecuenciaTexto( char *diccionario, unsigned tamTablaDisp );
-    void compruebaTexto( char *texto );
-    vector<FrecuenciaTermino> verFrecuencias();
+    virtual void compruebaTexto( char *texto );
+    virtual vector<FrecuenciaTermino> verFrecuencias();
 private:
     unsigned djb2( const char *palabra );
 

@@ -61,8 +61,8 @@ int main(int argc, char** argv) {
     texto2.compruebaTexto("quijote_sinsignos.txt");
     t2_fin = clock();
     
-    cout << "Tiempo en ms con texto1 " << (double)(t1_fin - t1_ini) << " ms." << endl;
-    cout << "Tiempo en ms con texto2 " << (double)(t2_fin - t2_ini) << " ms." << endl;
+    cout << "Tiempo en segundos con tabla Hash: " << ((double)(t1_fin - t1_ini))/CLOCKS_PER_SEC << "s." << endl;
+    cout << "Tiempo en segundos con árbol Avl : " << ((double)(t2_fin - t2_ini))/CLOCKS_PER_SEC << "s." << endl;
     
     return 0;
 }

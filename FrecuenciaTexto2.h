@@ -20,9 +20,8 @@ class FrecuenciaTexto2: public FrecuenciaTextoBase {
     Avl<FrecuenciaTerminoMejorada> arbol;
 public:
     FrecuenciaTexto2( char *diccionario );
-    void compruebaTexto( char *texto );
-    //vector<string> verInexistentes();
-    vector<FrecuenciaTermino> verFrecuencias();
+    virtual void compruebaTexto( char *texto );
+    virtual vector<FrecuenciaTermino> verFrecuencias();
 private:
 
 };

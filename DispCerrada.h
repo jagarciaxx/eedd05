@@ -31,7 +31,6 @@ class DispCerrada {
     vector< Entrada<T> > tabla;
 public:
     DispCerrada() {}
-    DispCerrada( unsigned tam ): tabla(tam) {}
     
     void insertar( long clave, const T &dato ) {
         long indice; // indice de la tabla

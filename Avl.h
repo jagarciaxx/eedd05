@@ -41,7 +41,7 @@ public:
     }
     
     virtual ~Avl() {
-        // Recorrido postOrden del árbol con 2 pilas
+        // Recorrido postOrden no recursivo con 2 pilas
         stack< Nodo<T>* > s;
         stack< Nodo<T>* > z;
         
